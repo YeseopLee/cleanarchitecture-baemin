@@ -1,7 +1,8 @@
-package com.example.cleanarchitecture_baemin
+package com.example.cleanarchitecture_baemin.screen.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.cleanarchitecture_baemin.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

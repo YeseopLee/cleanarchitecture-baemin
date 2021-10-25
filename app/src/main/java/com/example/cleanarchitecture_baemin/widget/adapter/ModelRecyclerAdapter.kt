@@ -9,6 +9,7 @@ import com.example.cleanarchitecture_baemin.screen.base.BaseViewModel
 import com.example.cleanarchitecture_baemin.util.mapper.ModelViewHolderMapper
 import com.example.cleanarchitecture_baemin.util.provider.ResourcesProvider
 import com.example.cleanarchitecture_baemin.widget.adapter.listener.AdapterListener
+import com.example.cleanarchitecture_baemin.widget.adapter.listener.restaurant.RestaurantListListener
 import com.example.cleanarchitecture_baemin.widget.adapter.viewholder.ModelViewHolder
 
 class ModelRecyclerAdapter<M: Model, VM: BaseViewModel>(
@@ -35,7 +36,7 @@ class ModelRecyclerAdapter<M: Model, VM: BaseViewModel>(
         }
     }
 
-    override fun submitList(list: MutableList<Model>?) {
+    override fun submitList(list: List<Model>?) {
         list?.let { modelList = it }
         super.submitList(list)
     }

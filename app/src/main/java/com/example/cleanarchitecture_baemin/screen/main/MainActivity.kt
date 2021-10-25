@@ -12,11 +12,13 @@ import com.example.cleanarchitecture_baemin.screen.main.my.MyFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
+class MainActivity : AppCompatActivity() {
 
-    override val viewModel by viewModel<MainViewModel>()
+    private lateinit var binding: ActivityMainBinding
 
-    override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+//    override val viewModel by viewModel<MainViewModel>()
+//
+//    override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         initViews()
     }
 
-    override fun initViews() = with(binding) {
+    private fun initViews() = with(binding) {
         initBottomNav()
         showFragment(HomeFragment.newInstance(),HomeFragment.TAG)
     }
@@ -63,7 +65,4 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         }
     }
 
-    override fun observeData() {
-
-    }
 }

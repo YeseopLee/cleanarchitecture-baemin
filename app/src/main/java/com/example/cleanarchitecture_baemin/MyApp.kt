@@ -3,6 +3,7 @@ package com.example.cleanarchitecture_baemin
 import android.app.Application
 import android.content.Context
 import com.example.cleanarchitecture_baemin.di.appModule
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class MyApp : Application() {
@@ -12,6 +13,7 @@ class MyApp : Application() {
         appContext = this
 
         startKoin {
+            androidContext(this@MyApp)
             modules(appModule)
         }
     }

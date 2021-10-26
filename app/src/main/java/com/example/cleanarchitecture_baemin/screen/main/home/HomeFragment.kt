@@ -2,6 +2,7 @@ package com.example.cleanarchitecture_baemin.screen.main.home
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.location.Location
 import android.location.LocationListener
@@ -12,13 +13,14 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.example.cleanarchitecture_baemin.R
 import com.example.cleanarchitecture_baemin.data.entitiy.LocationLatLngEntity
+import com.example.cleanarchitecture_baemin.data.entitiy.MapSearchInfoEntity
 import com.example.cleanarchitecture_baemin.databinding.FragmentHomeBinding
 import com.example.cleanarchitecture_baemin.screen.base.BaseFragment
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantCategory
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantListFragment
+import com.example.cleanarchitecture_baemin.screen.mylocation.MyLocationActivity
 import com.example.cleanarchitecture_baemin.widget.adapter.RestaurantListFragmentPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -34,6 +36,14 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     private lateinit var locationManager: LocationManager
 
     private lateinit var myLocationListener: MyLocationListener
+
+    // 동작확인해보기
+    private val changeLocationLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.getParcelableExtra<MapSearchInfoEntity>(HomeViewModel.MY_LOCATION_KEY)
+                ?.let { myLocationInfo -> viewModel.loadReverseGeoInformation(myLocationInfo.locationLatLng)}
+        }
+    }
 
     // permission 체크 런쳐
     private val locationPermissionLauncher =
@@ -56,25 +66,45 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         }
 
 
+    override fun initViews() = with(binding) {
+        locationText.setOnClickListener {
+            viewModel.getMapSearchInfo()?.let{ mapInfo ->
+                changeLocationLauncher.launch(
+                    MyLocationActivity.newIntent(
+                        requireContext(), mapInfo
+                    )
+                )
+            }
+        }
+    }
+
 
     private fun initViewPager(locationLatLng: LocationLatLngEntity) = with(binding) {
         val restaurantCategories = RestaurantCategory.values()
 
         if(::viewPagerAdapter.isInitialized.not()){
             val restaurantListFragmentList =restaurantCategories.map{
-                RestaurantListFragment.newInstance(it)
+                RestaurantListFragment.newInstance(it, locationLatLng)
             }
 
             viewPagerAdapter = RestaurantListFragmentPagerAdapter(
                 this@HomeFragment,
-                restaurantListFragmentList
+                restaurantListFragmentList,
+                locationLatLng
             )
             viewPager.adapter = viewPagerAdapter
+
+            viewPager.offscreenPageLimit = restaurantCategories.size
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.setText(restaurantCategories[position].categoryNameId)
+            }.attach()
         }
-        viewPager.offscreenPageLimit = restaurantCategories.size
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.setText(restaurantCategories[position].categoryNameId)
-        }.attach()
+        if (locationLatLng != viewPagerAdapter.locationLatLngEntity) {
+            viewPagerAdapter.locationLatLngEntity = locationLatLng
+            viewPagerAdapter.fragmentList.forEach {
+                it.viewModel.setLocationLatLng(locationLatLng)
+            }
+        }
     }
 
     override fun observeData() = viewModel.homeStateLiveData.observe(viewLifecycleOwner) {
@@ -93,6 +123,9 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>() {
                 binding.filterScrollView.isVisible = true
                 binding.viewPager.isVisible = true
                 initViewPager(it.mapSearchInfo.locationLatLng)
+                if(it.isLocationSame.not()) {
+                    Toast.makeText(requireContext(), R.string.please_set_your_location, Toast.LENGTH_SHORT).show()
+                }
             }
             is HomeState.Error -> {
                 binding.locationLoading.isGone = true

@@ -60,6 +60,7 @@ data class AddressInfo(
         fullAddress = fullAddress ?: "주소정보 없음",
         name = buildingName ?: "빌딩정보 없음",
         locationLatLng = locationLatLngEntity
+
     )
 
 }

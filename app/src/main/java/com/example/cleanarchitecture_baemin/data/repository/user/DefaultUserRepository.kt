@@ -13,7 +13,9 @@ class DefaultUserRepository(
         locationDao.get(-1)
     }
 
-    override suspend fun insertUserLocation(locationLatLngEntity: LocationLatLngEntity) = withContext(ioDispatcher) {
+    override suspend fun insertUserLocation(
+        locationLatLngEntity: LocationLatLngEntity
+    ) = withContext(ioDispatcher) {
         locationDao.insert(locationLatLngEntity)
     }
 }

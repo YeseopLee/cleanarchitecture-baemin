@@ -7,6 +7,7 @@ import android.content.Context
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isGone
@@ -41,7 +42,9 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     private val changeLocationLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             result.data?.getParcelableExtra<MapSearchInfoEntity>(HomeViewModel.MY_LOCATION_KEY)
-                ?.let { myLocationInfo -> viewModel.loadReverseGeoInformation(myLocationInfo.locationLatLng)}
+                ?.let { myLocationInfo -> viewModel.loadReverseGeoInformation(myLocationInfo.locationLatLng)
+                Log.e("Googletest",myLocationInfo.fullAddress)
+                }
         }
     }
 

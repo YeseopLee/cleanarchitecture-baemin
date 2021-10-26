@@ -1,5 +1,6 @@
 package com.example.cleanarchitecture_baemin.screen.main.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.cleanarchitecture_baemin.R
@@ -24,11 +25,11 @@ class HomeViewModel(
         val userLocation = userRepository.getUserLocation()
         val currentLocation = userLocation ?: locationLatLngEntity
 
-        val addressInfo = mapRepository.getReverseGeoInformation(locationLatLngEntity)
+        val addressInfo = mapRepository.getReverseGeoInformation(currentLocation)
         addressInfo?.let { info ->
             homeStateLiveData.value = HomeState.Success(
                 mapSearchInfo = info.toSearchInfoEntity(locationLatLngEntity),
-                isLocationSame = currentLocation == locationLatLngEntity
+                isLocationSame = locationLatLngEntity == currentLocation
                 
             )
 

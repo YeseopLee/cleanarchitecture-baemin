@@ -14,7 +14,6 @@ abstract class ApplicationDataBase: RoomDatabase() {
 
     companion object {
         const val DB_NAME = "ApplicationDataBase.db"
-
     }
 
     abstract fun LocationDao(): LocationDao

@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantCategory
 import kotlinx.parcelize.Parcelize
 
-
 @Parcelize
 data class RestaurantEntity(
     override val id: Long,

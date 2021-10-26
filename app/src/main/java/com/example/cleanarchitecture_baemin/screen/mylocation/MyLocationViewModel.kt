@@ -1,5 +1,6 @@
 package com.example.cleanarchitecture_baemin.screen.mylocation
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.cleanarchitecture_baemin.R
@@ -47,6 +48,7 @@ class MyLocationViewModel(
         when (val data = myLocationStateLiveData.value) {
             is MyLocationState.Success -> {
                 userRepository.insertUserLocation(data.mapSearchInfoEntity.locationLatLng)
+                Log.e("GoogleTest001", data.mapSearchInfoEntity.locationLatLng.toString())
                 myLocationStateLiveData.value = MyLocationState.Confirm(
                     data.mapSearchInfoEntity
                 )

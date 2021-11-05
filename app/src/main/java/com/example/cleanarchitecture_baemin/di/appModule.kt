@@ -3,6 +3,7 @@ package com.example.cleanarchitecture_baemin.di
 
 import com.example.cleanarchitecture_baemin.data.entitiy.LocationLatLngEntity
 import com.example.cleanarchitecture_baemin.data.entitiy.MapSearchInfoEntity
+import com.example.cleanarchitecture_baemin.data.entitiy.RestaurantEntity
 import com.example.cleanarchitecture_baemin.data.repository.map.DefaultMapRepository
 import com.example.cleanarchitecture_baemin.data.repository.map.MapRepository
 import com.example.cleanarchitecture_baemin.data.repository.restaurant.DefaultRestaurantRepository
@@ -12,6 +13,7 @@ import com.example.cleanarchitecture_baemin.data.repository.user.UserRepository
 import com.example.cleanarchitecture_baemin.screen.main.home.HomeViewModel
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantCategory
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantListViewModel
+import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.RestaurantDetailViewModel
 import com.example.cleanarchitecture_baemin.screen.main.my.MyViewModel
 import com.example.cleanarchitecture_baemin.screen.mylocation.MyLocationViewModel
 import com.example.cleanarchitecture_baemin.util.provider.DefaultResourcesProvider
@@ -27,10 +29,11 @@ val appModule = module {
     viewModel { MyViewModel() }
     viewModel { (restaurantCategory: RestaurantCategory, locationLatLng: LocationLatLngEntity) -> RestaurantListViewModel(restaurantCategory,locationLatLng, get()) }
     viewModel { (mapSearchInfoEntity: MapSearchInfoEntity) -> MyLocationViewModel(mapSearchInfoEntity, get(), get())}
+    viewModel { (restaurantEntity: RestaurantEntity) -> RestaurantDetailViewModel(restaurantEntity, get()) }
 
     single<RestaurantRepository> { DefaultRestaurantRepository(get(), get(), get()) }
     single<MapRepository> { DefaultMapRepository(get(), get())}
-    single<UserRepository> { DefaultUserRepository(get(), get())}
+    single<UserRepository> { DefaultUserRepository(get(), get(), get())}
 
     single { Dispatchers.IO }
     single { Dispatchers.Main }
@@ -45,4 +48,5 @@ val appModule = module {
 
     single { provideDB(androidApplication()) }
     single { provideLocationDao(get())}
+    single { provideRestaurantDao(get())}
 }

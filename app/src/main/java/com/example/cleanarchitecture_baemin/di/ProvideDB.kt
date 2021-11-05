@@ -8,3 +8,5 @@ fun provideDB(context: Context): ApplicationDataBase =
     Room.databaseBuilder(context, ApplicationDataBase::class.java, ApplicationDataBase.DB_NAME).build()
 
 fun provideLocationDao(database: ApplicationDataBase) = database.LocationDao()
+
+fun provideRestaurantDao(database: ApplicationDataBase) = database.RestaurantDao()

@@ -19,6 +19,7 @@ import com.example.cleanarchitecture_baemin.databinding.FragmentHomeBinding
 import com.example.cleanarchitecture_baemin.screen.base.BaseFragment
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantCategory
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantListFragment
+import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantOrder
 import com.example.cleanarchitecture_baemin.screen.mylocation.MyLocationActivity
 import com.example.cleanarchitecture_baemin.widget.adapter.RestaurantListFragmentPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -78,6 +79,37 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>() {
                     )
                 )
             }
+        }
+        
+        orderChipGroup.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId) {
+                R.id.chipDefault -> {
+                    chipInit.isGone = true
+                    changeRestaurantOrder(RestaurantOrder.DEFAULT)
+                }
+                R.id.chipInit -> {
+                    chipDefault.isChecked = true
+
+                }
+                R.id.chipLowDeliveryTip -> {
+                    chipInit.isVisible = true
+                    changeRestaurantOrder(RestaurantOrder.LOW_DELIVERY_TIP)
+                }
+                R.id.chipFastDelivery -> {
+                    chipInit.isVisible = true
+                    changeRestaurantOrder(RestaurantOrder.FAST_DELIVERY)
+                }
+                R.id.chipTopRate -> {
+                    chipInit.isVisible = true
+                    changeRestaurantOrder(RestaurantOrder.TOP_RATE)
+                }
+            }
+        }
+    }
+
+    private fun changeRestaurantOrder(order: RestaurantOrder) {
+        viewPagerAdapter.fragmentList.forEach {
+            it.viewModel.setRestaurantOrder(order)
         }
     }
 

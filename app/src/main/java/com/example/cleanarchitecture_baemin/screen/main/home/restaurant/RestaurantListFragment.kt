@@ -7,6 +7,7 @@ import com.example.cleanarchitecture_baemin.data.entitiy.LocationLatLngEntity
 import com.example.cleanarchitecture_baemin.databinding.FragmentRestaurantListBinding
 import com.example.cleanarchitecture_baemin.model.restaurant.RestaurantModel
 import com.example.cleanarchitecture_baemin.screen.base.BaseFragment
+import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.RestaurantDetailActivity
 import com.example.cleanarchitecture_baemin.util.provider.ResourcesProvider
 import com.example.cleanarchitecture_baemin.widget.adapter.ModelRecyclerAdapter
 import com.example.cleanarchitecture_baemin.widget.adapter.listener.restaurant.RestaurantListListener
@@ -37,7 +38,12 @@ class RestaurantListFragment: BaseFragment<RestaurantListViewModel, FragmentRest
             resourcesProvider,
             adapterListener = object : RestaurantListListener {
                 override fun onClickItem(model: RestaurantModel) {
-                    Toast.makeText(requireContext(),"$model", Toast.LENGTH_SHORT).show()
+                   startActivity(
+                       RestaurantDetailActivity.newIntent(
+                           requireContext(),
+                           model.toEntity()
+                       )
+                   )
             }
         })
     }
@@ -51,9 +57,12 @@ class RestaurantListFragment: BaseFragment<RestaurantListViewModel, FragmentRest
         adapter.submitList(it)
     }
 
+
+
     companion object {
         const val RESTAURANT_CATEGORY_KEY = "restaurantCategory"
         const val LOCATION_KEY = "location"
+        const val RESTAURANT_KEY = "Restaurant"
 
         fun newInstance(
             restaurantCategory: RestaurantCategory,

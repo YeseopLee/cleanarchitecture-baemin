@@ -16,4 +16,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="AppTheme.AppbarOverlay" parent="Theme.Cleanarchitecturebaemin">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:background">@null</item>
+
+    </style>
+
 </resources>

@@ -13,6 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Cleanarchitecturebaemin">
         <activity
             android:name=".screen.main.home.restaurant.detail.RestaurantDetailActivity"
@@ -33,6 +34,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map" />
+
+
     </application>
 
 </manifest>

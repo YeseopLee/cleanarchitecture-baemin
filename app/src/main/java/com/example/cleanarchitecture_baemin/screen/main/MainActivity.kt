@@ -8,6 +8,7 @@ import com.example.cleanarchitecture_baemin.R
 import com.example.cleanarchitecture_baemin.databinding.ActivityMainBinding
 import com.example.cleanarchitecture_baemin.screen.base.BaseActivity
 import com.example.cleanarchitecture_baemin.screen.main.home.HomeFragment
+import com.example.cleanarchitecture_baemin.screen.main.like.RestaurantLikeListFragment
 import com.example.cleanarchitecture_baemin.screen.main.my.MyFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -40,6 +41,11 @@ class MainActivity : AppCompatActivity() {
                     showFragment(HomeFragment.newInstance(),HomeFragment.TAG)
                     true
                 }
+                R.id.menu_like -> {
+                    showFragment(RestaurantLikeListFragment.newInstance(), RestaurantLikeListFragment.TAG)
+                    true
+                }
+
                 R.id.menu_my -> {
                     showFragment(MyFragment.newInstance(),MyFragment.TAG)
                     true

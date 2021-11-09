@@ -22,6 +22,7 @@ import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.Restaura
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.RestaurantDetailViewModel
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.menu.RestaurantMenuListViewModel
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.review.RestaurantReviewListViewModel
+import com.example.cleanarchitecture_baemin.screen.main.like.RestaurantLikeListViewModel
 import com.example.cleanarchitecture_baemin.screen.main.my.MyViewModel
 import com.example.cleanarchitecture_baemin.screen.mylocation.MyLocationViewModel
 import com.example.cleanarchitecture_baemin.util.provider.DefaultResourcesProvider
@@ -41,7 +42,7 @@ val appModule = module {
     viewModel { (restaurantEntity: RestaurantEntity) -> RestaurantDetailViewModel(restaurantEntity, get(), get()) }
     viewModel { (restaurantId: Long, restaurantFoodList: List<RestaurantFoodEntity>) -> RestaurantMenuListViewModel(restaurantId,restaurantFoodList, get()) }
     viewModel { (restaurantTitle: String) -> RestaurantReviewListViewModel(restaurantTitle, get()) }
-
+    viewModel { RestaurantLikeListViewModel(get()) }
 
     single<RestaurantRepository> { DefaultRestaurantRepository(get(), get(), get()) }
     single<MapRepository> { DefaultMapRepository(get(), get())}

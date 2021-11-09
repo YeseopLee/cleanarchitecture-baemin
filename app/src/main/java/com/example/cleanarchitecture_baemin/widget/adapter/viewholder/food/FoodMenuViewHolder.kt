@@ -11,6 +11,7 @@ import com.example.cleanarchitecture_baemin.screen.base.BaseViewModel
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.menu.RestaurantMenuListViewModel
 import com.example.cleanarchitecture_baemin.util.provider.ResourcesProvider
 import com.example.cleanarchitecture_baemin.widget.adapter.listener.AdapterListener
+import com.example.cleanarchitecture_baemin.widget.adapter.listener.restaurant.FoodMenuListListener
 import com.example.cleanarchitecture_baemin.widget.adapter.viewholder.ModelViewHolder
 
 class FoodMenuViewHolder(
@@ -24,6 +25,11 @@ class FoodMenuViewHolder(
     }
 
     override fun bindViews(model: FoodModel, adapterListener: AdapterListener) {
+        if(adapterListener is FoodMenuListListener) {
+            binding.root.setOnClickListener {
+                adapterListener.onClickItem(model)
+            }
+        }
     }
 
     override fun bindData(model: FoodModel) {

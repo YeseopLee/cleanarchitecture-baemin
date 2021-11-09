@@ -10,3 +10,5 @@ fun provideDB(context: Context): ApplicationDataBase =
 fun provideLocationDao(database: ApplicationDataBase) = database.LocationDao()
 
 fun provideRestaurantDao(database: ApplicationDataBase) = database.RestaurantDao()
+
+fun provideFoodMenuBasketDao(database: ApplicationDataBase) = database.FoodMenuBasketDao()

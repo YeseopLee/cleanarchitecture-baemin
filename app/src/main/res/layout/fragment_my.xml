@@ -37,6 +37,14 @@
         android:layout_margin="8dp"/>
 
     <androidx.constraintlayout.widget.Group
+        android:id="@+id/loginRequiredGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="loginButton, loginTextView"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <androidx.constraintlayout.widget.Group
         android:id="@+id/profileGroup"
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -5,6 +5,7 @@ import com.example.cleanarchitecture_baemin.data.entitiy.LocationLatLngEntity
 import com.example.cleanarchitecture_baemin.data.entitiy.MapSearchInfoEntity
 import com.example.cleanarchitecture_baemin.data.entitiy.RestaurantEntity
 import com.example.cleanarchitecture_baemin.data.entitiy.RestaurantFoodEntity
+import com.example.cleanarchitecture_baemin.data.preference.AppPreferenceManager
 import com.example.cleanarchitecture_baemin.data.repository.map.DefaultMapRepository
 import com.example.cleanarchitecture_baemin.data.repository.map.MapRepository
 import com.example.cleanarchitecture_baemin.data.repository.restaurant.DefaultRestaurantRepository
@@ -34,7 +35,7 @@ import org.koin.dsl.module
 val appModule = module {
 
     viewModel { HomeViewModel(get(), get(), get()) }
-    viewModel { MyViewModel() }
+    viewModel { MyViewModel(get()) }
     viewModel { (restaurantCategory: RestaurantCategory, locationLatLng: LocationLatLngEntity) -> RestaurantListViewModel(restaurantCategory,locationLatLng, get()) }
     viewModel { (mapSearchInfoEntity: MapSearchInfoEntity) -> MyLocationViewModel(mapSearchInfoEntity, get(), get())}
     viewModel { (restaurantEntity: RestaurantEntity) -> RestaurantDetailViewModel(restaurantEntity, get(), get()) }
@@ -52,6 +53,7 @@ val appModule = module {
     single { Dispatchers.Main }
 
     single<ResourcesProvider> { DefaultResourcesProvider(androidApplication()) }
+    single {AppPreferenceManager(androidApplication())}
 
     single { provideGsonConvertFactory() }
     single { buildOkHttpClient() }

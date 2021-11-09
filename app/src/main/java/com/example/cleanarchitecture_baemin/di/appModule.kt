@@ -11,6 +11,8 @@ import com.example.cleanarchitecture_baemin.data.repository.restaurant.DefaultRe
 import com.example.cleanarchitecture_baemin.data.repository.restaurant.RestaurantRepository
 import com.example.cleanarchitecture_baemin.data.repository.restaurant.food.DefaultRestaurantFoodRepository
 import com.example.cleanarchitecture_baemin.data.repository.restaurant.food.RestaurantFoodRepository
+import com.example.cleanarchitecture_baemin.data.repository.restaurant.review.DefaultRestaurantReviewRepository
+import com.example.cleanarchitecture_baemin.data.repository.restaurant.review.RestaurantReviewRepository
 import com.example.cleanarchitecture_baemin.data.repository.user.DefaultUserRepository
 import com.example.cleanarchitecture_baemin.data.repository.user.UserRepository
 import com.example.cleanarchitecture_baemin.screen.main.home.HomeViewModel
@@ -37,13 +39,14 @@ val appModule = module {
     viewModel { (mapSearchInfoEntity: MapSearchInfoEntity) -> MyLocationViewModel(mapSearchInfoEntity, get(), get())}
     viewModel { (restaurantEntity: RestaurantEntity) -> RestaurantDetailViewModel(restaurantEntity, get(), get()) }
     viewModel { (restaurantId: Long, restaurantFoodList: List<RestaurantFoodEntity>) -> RestaurantMenuListViewModel(restaurantId,restaurantFoodList, get()) }
-    viewModel { RestaurantReviewListViewModel() }
+    viewModel { (restaurantTitle: String) -> RestaurantReviewListViewModel(restaurantTitle, get()) }
 
 
     single<RestaurantRepository> { DefaultRestaurantRepository(get(), get(), get()) }
     single<MapRepository> { DefaultMapRepository(get(), get())}
     single<UserRepository> { DefaultUserRepository(get(), get(), get())}
     single<RestaurantFoodRepository> { DefaultRestaurantFoodRepository(get(),get(), get())}
+    single<RestaurantReviewRepository> { DefaultRestaurantReviewRepository(get())}
 
     single { Dispatchers.IO }
     single { Dispatchers.Main }

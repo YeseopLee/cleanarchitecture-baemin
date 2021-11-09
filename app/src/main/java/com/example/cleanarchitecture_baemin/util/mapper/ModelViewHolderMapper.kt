@@ -2,10 +2,10 @@ package com.example.cleanarchitecture_baemin.util.mapper
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.example.cleanarchitecture_baemin.databinding.ViewholderEmptyBinding
 import com.example.cleanarchitecture_baemin.databinding.ViewholderFoodMenuBinding
 import com.example.cleanarchitecture_baemin.databinding.ViewholderRestaurantBinding
+import com.example.cleanarchitecture_baemin.databinding.ViewholderRestaurantReviewBinding
 import com.example.cleanarchitecture_baemin.model.CellType
 import com.example.cleanarchitecture_baemin.model.Model
 import com.example.cleanarchitecture_baemin.screen.base.BaseViewModel
@@ -14,6 +14,7 @@ import com.example.cleanarchitecture_baemin.widget.adapter.viewholder.EmptyViewH
 import com.example.cleanarchitecture_baemin.widget.adapter.viewholder.ModelViewHolder
 import com.example.cleanarchitecture_baemin.widget.adapter.viewholder.food.FoodMenuViewHolder
 import com.example.cleanarchitecture_baemin.widget.adapter.viewholder.restaurant.RestaurantViewHolder
+import com.example.cleanarchitecture_baemin.widget.adapter.viewholder.review.RestaurantReviewViewHolder
 
 object ModelViewHolderMapper {
 
@@ -38,6 +39,11 @@ object ModelViewHolderMapper {
             )
             CellType.FOOD_CELL -> FoodMenuViewHolder(
                 ViewholderFoodMenuBinding.inflate(inflater, parent, false),
+                viewModel,
+                resourcesProvider
+            )
+            CellType.REVIEW_CELL -> RestaurantReviewViewHolder(
+                ViewholderRestaurantReviewBinding.inflate(inflater, parent, false),
                 viewModel,
                 resourcesProvider
             )

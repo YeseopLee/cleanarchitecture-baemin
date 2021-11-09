@@ -132,7 +132,7 @@ class RestaurantDetailActivity : BaseActivity<RestaurantDetailViewModel,Activity
             null, null, null
         )
         if (::viewPagerAdapter.isInitialized.not()) {
-            initViewPager(state.restaurantEntity.restaurantInfoId, state.restaurantFoodList)
+            initViewPager(state.restaurantEntity.restaurantInfoId,state.restaurantEntity.restaurantTitle, state.restaurantFoodList)
         }
 
         notifyBasketCount(state.foodMenuListInBasket)
@@ -156,6 +156,7 @@ class RestaurantDetailActivity : BaseActivity<RestaurantDetailViewModel,Activity
 
     private fun initViewPager(
         restaurantInfoId: Long,
+        restaurantTitle: String,
         restaurantFoodList: List<RestaurantFoodEntity>?
     ) {
         viewPagerAdapter = RestaurantDetailListFragmentPagerAdapter(
@@ -166,7 +167,7 @@ class RestaurantDetailActivity : BaseActivity<RestaurantDetailViewModel,Activity
                     ArrayList(restaurantFoodList ?: listOf())
                 ),
                 RestaurantReviewListFragment.newInstance(
-                    restaurantInfoId
+                    restaurantTitle
                 )
 
             )

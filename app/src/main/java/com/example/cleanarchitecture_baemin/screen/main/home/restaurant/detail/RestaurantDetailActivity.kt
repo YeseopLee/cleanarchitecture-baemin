@@ -5,9 +5,11 @@ import android.content.ClipDescription.MIMETYPE_TEXT_PLAIN
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.example.cleanarchitecture_baemin.R
 import com.example.cleanarchitecture_baemin.data.entitiy.RestaurantEntity
 import com.example.cleanarchitecture_baemin.data.entitiy.RestaurantFoodEntity
@@ -15,12 +17,17 @@ import com.example.cleanarchitecture_baemin.databinding.ActivityRestaurantDetail
 import com.example.cleanarchitecture_baemin.extensions.fromDpToPx
 import com.example.cleanarchitecture_baemin.extensions.load
 import com.example.cleanarchitecture_baemin.screen.base.BaseActivity
+import com.example.cleanarchitecture_baemin.screen.main.MainTabMenu
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantListFragment
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.menu.RestaurantMenuListFragment
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.review.RestaurantReviewListFragment
+import com.example.cleanarchitecture_baemin.util.event.MenuChangeEventBus
 import com.example.cleanarchitecture_baemin.widget.adapter.RestaurantDetailListFragmentPagerAdapter
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.lang.Math.abs
@@ -34,6 +41,9 @@ class RestaurantDetailActivity : BaseActivity<RestaurantDetailViewModel,Activity
             intent.getParcelableExtra<RestaurantEntity>(RestaurantListFragment.RESTAURANT_KEY)
         )
     }
+    private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
+
+    private val menuChangeEventBus by inject<MenuChangeEventBus>()
 
     companion object {
         fun newIntent(context: Context, restaurantEntity: RestaurantEntity) = Intent(context, RestaurantDetailActivity::class.java).apply {
@@ -150,8 +160,32 @@ class RestaurantDetailActivity : BaseActivity<RestaurantDetailViewModel,Activity
             getString(R.string.basket_count, foodMenuListBasket.size)
         }
         basketButton.setOnClickListener {
+            if(firebaseAuth.currentUser == null) {
+                alertLoginNeed {
+                    lifecycleScope.launch {
+                        menuChangeEventBus.changeMenu(MainTabMenu.MY)
+                        finish()
+                    }
+                }
+            } else {
 
+            }
         }
+    }
+
+    private fun alertLoginNeed(afterAction: () -> Unit) {
+        AlertDialog.Builder(this)
+            .setTitle("로그인이 필요합니다.")
+            .setMessage("주문하려면 로그인이 필요합니다. My탭으로 이동하시겠습니까?")
+            .setPositiveButton("이동") { dialog, _ ->
+                afterAction()
+                dialog.dismiss()
+            }
+            .setNegativeButton("취소") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 
     private fun initViewPager(

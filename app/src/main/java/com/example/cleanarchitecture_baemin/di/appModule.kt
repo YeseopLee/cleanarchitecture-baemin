@@ -25,6 +25,7 @@ import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.r
 import com.example.cleanarchitecture_baemin.screen.main.like.RestaurantLikeListViewModel
 import com.example.cleanarchitecture_baemin.screen.main.my.MyViewModel
 import com.example.cleanarchitecture_baemin.screen.mylocation.MyLocationViewModel
+import com.example.cleanarchitecture_baemin.util.event.MenuChangeEventBus
 import com.example.cleanarchitecture_baemin.util.provider.DefaultResourcesProvider
 import com.example.cleanarchitecture_baemin.util.provider.ResourcesProvider
 import kotlinx.coroutines.Dispatchers
@@ -70,4 +71,6 @@ val appModule = module {
     single { provideLocationDao(get())}
     single { provideRestaurantDao(get())}
     single { provideFoodMenuBasketDao(get()) }
+
+    single { MenuChangeEventBus() }
 }

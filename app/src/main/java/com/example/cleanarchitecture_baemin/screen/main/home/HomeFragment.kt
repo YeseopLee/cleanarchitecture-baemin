@@ -25,6 +25,7 @@ import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.Restaura
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantListFragment
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantOrder
 import com.example.cleanarchitecture_baemin.screen.mylocation.MyLocationActivity
+import com.example.cleanarchitecture_baemin.screen.order.OrderMenuListActivity
 import com.example.cleanarchitecture_baemin.util.event.MenuChangeEventBus
 import com.example.cleanarchitecture_baemin.widget.adapter.RestaurantListFragmentPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -204,7 +205,9 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 //                            (requireActivity() as MainActivity).goToTab(MainTabMenu.MY)
                         }
                     } else {
-
+                        startActivity(
+                            OrderMenuListActivity.newIntent(requireContext())
+                        )
                     }
                 }
             } else {

@@ -8,6 +8,8 @@ import com.example.cleanarchitecture_baemin.data.entitiy.RestaurantFoodEntity
 import com.example.cleanarchitecture_baemin.data.preference.AppPreferenceManager
 import com.example.cleanarchitecture_baemin.data.repository.map.DefaultMapRepository
 import com.example.cleanarchitecture_baemin.data.repository.map.MapRepository
+import com.example.cleanarchitecture_baemin.data.repository.order.DefaultOrderRepository
+import com.example.cleanarchitecture_baemin.data.repository.order.OrderRepository
 import com.example.cleanarchitecture_baemin.data.repository.restaurant.DefaultRestaurantRepository
 import com.example.cleanarchitecture_baemin.data.repository.restaurant.RestaurantRepository
 import com.example.cleanarchitecture_baemin.data.repository.restaurant.food.DefaultRestaurantFoodRepository
@@ -25,9 +27,12 @@ import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.r
 import com.example.cleanarchitecture_baemin.screen.main.like.RestaurantLikeListViewModel
 import com.example.cleanarchitecture_baemin.screen.main.my.MyViewModel
 import com.example.cleanarchitecture_baemin.screen.mylocation.MyLocationViewModel
+import com.example.cleanarchitecture_baemin.screen.order.OrderMenuListViewModel
 import com.example.cleanarchitecture_baemin.util.event.MenuChangeEventBus
 import com.example.cleanarchitecture_baemin.util.provider.DefaultResourcesProvider
 import com.example.cleanarchitecture_baemin.util.provider.ResourcesProvider
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
@@ -44,12 +49,14 @@ val appModule = module {
     viewModel { (restaurantId: Long, restaurantFoodList: List<RestaurantFoodEntity>) -> RestaurantMenuListViewModel(restaurantId,restaurantFoodList, get()) }
     viewModel { (restaurantTitle: String) -> RestaurantReviewListViewModel(restaurantTitle, get()) }
     viewModel { RestaurantLikeListViewModel(get()) }
+    viewModel { OrderMenuListViewModel(get(), get()) }
 
     single<RestaurantRepository> { DefaultRestaurantRepository(get(), get(), get()) }
     single<MapRepository> { DefaultMapRepository(get(), get())}
     single<UserRepository> { DefaultUserRepository(get(), get(), get())}
     single<RestaurantFoodRepository> { DefaultRestaurantFoodRepository(get(),get(), get())}
     single<RestaurantReviewRepository> { DefaultRestaurantReviewRepository(get())}
+    single<OrderRepository> { DefaultOrderRepository(get(), get()) }
 
     single { Dispatchers.IO }
     single { Dispatchers.Main }
@@ -73,4 +80,6 @@ val appModule = module {
     single { provideFoodMenuBasketDao(get()) }
 
     single { MenuChangeEventBus() }
+
+    single { Firebase.firestore }
 }

@@ -14,6 +14,7 @@
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable/ic_my.xml" value="0.17314814814814813" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable/ic_star.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_my_location.xml" value="0.33" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_order_menu_list.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_restaurant_detail.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/fragment_my.xml" value="0.25" />
@@ -22,6 +23,7 @@
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_empty.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_food_menu.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_like_restaurant.xml" value="0.11503623188405797" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_order_menu.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_restaurant.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_restaurant_review.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />

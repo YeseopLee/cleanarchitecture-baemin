@@ -21,6 +21,7 @@ import com.example.cleanarchitecture_baemin.screen.main.MainTabMenu
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.RestaurantListFragment
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.menu.RestaurantMenuListFragment
 import com.example.cleanarchitecture_baemin.screen.main.home.restaurant.detail.review.RestaurantReviewListFragment
+import com.example.cleanarchitecture_baemin.screen.order.OrderMenuListActivity
 import com.example.cleanarchitecture_baemin.util.event.MenuChangeEventBus
 import com.example.cleanarchitecture_baemin.widget.adapter.RestaurantDetailListFragmentPagerAdapter
 import com.google.android.material.appbar.AppBarLayout
@@ -168,7 +169,9 @@ class RestaurantDetailActivity : BaseActivity<RestaurantDetailViewModel,Activity
                     }
                 }
             } else {
-
+                startActivity(
+                    OrderMenuListActivity.newIntent(this@RestaurantDetailActivity)
+                )
             }
         }
     }

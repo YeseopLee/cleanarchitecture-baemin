@@ -9,13 +9,18 @@ import com.example.cleanarchitecture_baemin.R
 import com.example.cleanarchitecture_baemin.databinding.FragmentHomeBinding
 import com.example.cleanarchitecture_baemin.databinding.FragmentMyBinding
 import com.example.cleanarchitecture_baemin.extensions.load
+import com.example.cleanarchitecture_baemin.model.order.OrderModel
 import com.example.cleanarchitecture_baemin.screen.base.BaseFragment
 import com.example.cleanarchitecture_baemin.screen.main.home.HomeFragment
+import com.example.cleanarchitecture_baemin.util.provider.ResourcesProvider
+import com.example.cleanarchitecture_baemin.widget.adapter.ModelRecyclerAdapter
+import com.example.cleanarchitecture_baemin.widget.adapter.listener.AdapterListener
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -50,6 +55,14 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
         }
     }
 
+    private val resourcesProvider by inject<ResourcesProvider>()
+
+    private val adapter by lazy {
+        ModelRecyclerAdapter<OrderModel, MyViewModel>(listOf(), viewModel, resourcesProvider, object: AdapterListener{
+
+        } )
+    }
+
     override fun initViews() = with(binding) {
         loginButton.setOnClickListener {
             signInGoogle()
@@ -58,6 +71,7 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
             firebaseAuth.signOut()
             viewModel.signOut()
         }
+        recyclerView.adapter = adapter
     }
 
     private fun signInGoogle() {
@@ -98,6 +112,8 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
         loginRequiredGroup.isGone = true
         profileImageView.load(state.profileImageUri.toString(), 60f)
         userNameTextView.text = state.userName
+//        Toast.makeText(requireContext(), state.orderList.toString(), Toast.LENGTH_SHORT).show()
+        adapter.submitList(state.orderList)
 
     }
 

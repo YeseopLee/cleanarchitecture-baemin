@@ -7,6 +7,7 @@ import com.example.cleanarchitecture_baemin.model.order.OrderModel
 import com.example.cleanarchitecture_baemin.screen.base.BaseViewModel
 import com.example.cleanarchitecture_baemin.util.provider.ResourcesProvider
 import com.example.cleanarchitecture_baemin.widget.adapter.listener.AdapterListener
+import com.example.cleanarchitecture_baemin.widget.adapter.listener.order.OrderListListener
 import com.example.cleanarchitecture_baemin.widget.adapter.viewholder.ModelViewHolder
 
 class OrderViewHolder(
@@ -17,7 +18,13 @@ class OrderViewHolder(
 
     override fun reset() = Unit
 
-    override fun bindViews(model: OrderModel, adapterListener: AdapterListener) = Unit
+    override fun bindViews(model: OrderModel, adapterListener: AdapterListener) {
+        if (adapterListener is OrderListListener) {
+            binding.root.setOnClickListener {
+                adapterListener.writeRestaurantReview(model.orderId, model.restaurantTitle)
+            }
+        }
+    }
 
     override fun bindData(model: OrderModel) {
         super.bindData(model)

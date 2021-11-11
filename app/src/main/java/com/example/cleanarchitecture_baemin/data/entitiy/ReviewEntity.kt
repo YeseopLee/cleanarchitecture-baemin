@@ -1,12 +1,12 @@
 package com.example.cleanarchitecture_baemin.data.entitiy
 
-import android.net.Uri
-
-class ReviewEntity(
-    override val id: Long,
+data class ReviewEntity (
+    val userId: String,
     val title: String,
-    val description: String,
-    val grade: Int,
-    val images: List<Uri>? = null
-
-) : Entity
+    val createdAt: Long,
+    val content: String,
+    val rating: Float,
+    val imageUrlList: List<String>? = null,
+    val orderId: String,
+    val restaurantTitle: String
+    )

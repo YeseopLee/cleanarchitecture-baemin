@@ -4,5 +4,6 @@ data class OrderEntity(
     val id: String,
     var userId: String,
     val restaurantId: Long,
-    val foodMenuList: List<RestaurantFoodEntity>
+    val foodMenuList: List<RestaurantFoodEntity>,
+    val restaurantTitle: String
 )

@@ -51,7 +51,6 @@ class MyLocationActivity : BaseActivity<MyLocationViewModel, ActivityMyLocationB
         }
         confirmButton.setOnClickListener {
             viewModel.confirmSelectLocation()
-            Log.e("GoogleMapTesting", viewModel.myLocationStateLiveData.value.toString())
         }
         setupGoogleMap()
     }
@@ -75,7 +74,6 @@ class MyLocationActivity : BaseActivity<MyLocationViewModel, ActivityMyLocationB
                 setResult(Activity.RESULT_OK, Intent().apply{
                     putExtra(HomeViewModel.MY_LOCATION_KEY, it.mapSearchInfoEntity)
                 })
-                Log.e("GoogleMapTesting2", it.mapSearchInfoEntity.fullAddress.toString())
                 finish()
             }
 

@@ -53,7 +53,6 @@ class RestaurantListFragment: BaseFragment<RestaurantListViewModel, FragmentRest
     }
 
     override fun observeData() = viewModel.restaurantListLiveData.observe(viewLifecycleOwner) {
-        Log.e("restaurantList: ", it.toString())
         adapter.submitList(it)
     }
 

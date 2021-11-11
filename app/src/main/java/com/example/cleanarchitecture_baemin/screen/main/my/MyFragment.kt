@@ -12,9 +12,11 @@ import com.example.cleanarchitecture_baemin.extensions.load
 import com.example.cleanarchitecture_baemin.model.order.OrderModel
 import com.example.cleanarchitecture_baemin.screen.base.BaseFragment
 import com.example.cleanarchitecture_baemin.screen.main.home.HomeFragment
+import com.example.cleanarchitecture_baemin.screen.review.AddRestaurantReviewActivity
 import com.example.cleanarchitecture_baemin.util.provider.ResourcesProvider
 import com.example.cleanarchitecture_baemin.widget.adapter.ModelRecyclerAdapter
 import com.example.cleanarchitecture_baemin.widget.adapter.listener.AdapterListener
+import com.example.cleanarchitecture_baemin.widget.adapter.listener.order.OrderListListener
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -58,8 +60,12 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
     private val resourcesProvider by inject<ResourcesProvider>()
 
     private val adapter by lazy {
-        ModelRecyclerAdapter<OrderModel, MyViewModel>(listOf(), viewModel, resourcesProvider, object: AdapterListener{
-
+        ModelRecyclerAdapter<OrderModel, MyViewModel>(listOf(), viewModel, resourcesProvider, object: OrderListListener{
+            override fun writeRestaurantReview(orderId: String, restaurantTitle: String) {
+                startActivity(
+                    AddRestaurantReviewActivity.newIntent(requireContext(), orderId, restaurantTitle)
+                )
+            }
         } )
     }
 

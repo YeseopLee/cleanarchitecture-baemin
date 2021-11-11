@@ -1,4 +1,4 @@
-package aop.fastcampus.part6.chapter01.data.response.address
+package com.example.cleanarchitecture_baemin.data.response.address
 
 import com.example.cleanarchitecture_baemin.data.entitiy.LocationLatLngEntity
 import com.example.cleanarchitecture_baemin.data.entitiy.MapSearchInfoEntity

@@ -57,7 +57,6 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         if (result.resultCode == Activity.RESULT_OK) {
             result.data?.getParcelableExtra<MapSearchInfoEntity>(HomeViewModel.MY_LOCATION_KEY)
                 ?.let { myLocationInfo -> viewModel.loadReverseGeoInformation(myLocationInfo.locationLatLng)
-                Log.e("Googletest",myLocationInfo.fullAddress)
                 }
         }
     }

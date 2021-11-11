@@ -48,7 +48,6 @@ class MyLocationViewModel(
         when (val data = myLocationStateLiveData.value) {
             is MyLocationState.Success -> {
                 userRepository.insertUserLocation(data.mapSearchInfoEntity.locationLatLng)
-                Log.e("GoogleTest001", data.mapSearchInfoEntity.locationLatLng.toString())
                 myLocationStateLiveData.value = MyLocationState.Confirm(
                     data.mapSearchInfoEntity
                 )

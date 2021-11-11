@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable-v24/bg_frame_gallery.xml" value="0.14814814814814814" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable-v24/bg_round_corner_8_black.xml" value="0.14814814814814814" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable-v24/button_round_corner_4_black_24.xml" value="0.14814814814814814" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable-v24/ic_check_disabled.xml" value="0.14814814814814814" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable-v24/ic_check_enabled.xml" value="0.14814814814814814" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable-v24/ic_clock.xml" value="0.22870370370370371" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable/bg_filter_chip_state_list.xml" value="0.23055555555555557" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable/ic_back_arrow.xml" value="0.21822916666666667" />
@@ -13,6 +18,10 @@
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable/ic_home.xml" value="0.17314814814814813" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable/ic_my.xml" value="0.17314814814814813" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/drawable/ic_star.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_add_restaurant_review.xml" value="0.25" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_camera.xml" value="0.14855072463768115" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_gallery.xml" value="0.14855072463768115" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_image_preview_list.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_my_location.xml" value="0.33" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_order_menu_list.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/activity_restaurant_detail.xml" value="0.1" />
@@ -22,9 +31,12 @@
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/fragment_restaurant_list.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_empty.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_food_menu.xml" value="0.1" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_gallery_photo_item.xml" value="0.14855072463768115" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_image.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_like_restaurant.xml" value="0.11503623188405797" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_order.xml" value="0.1778115501519757" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_order_menu.xml" value="0.18432971014492755" />
+        <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_photo_item.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_restaurant.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/layout/viewholder_restaurant_review.xml" value="0.1" />
         <entry key="..\:/Users/lee/AndroidStudioProjects/cleanarchitecturebaemin/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />

@@ -1,4 +1,4 @@
-package aop.fastcampus.part6.chapter01.data.response.search
+package com.example.cleanarchitecture_baemin.data.response.search
 
 data class SearchPoiInfo(
     val totalCount: String,

@@ -31,8 +31,10 @@ import com.example.cleanarchitecture_baemin.screen.order.OrderMenuListViewModel
 import com.example.cleanarchitecture_baemin.util.event.MenuChangeEventBus
 import com.example.cleanarchitecture_baemin.util.provider.DefaultResourcesProvider
 import com.example.cleanarchitecture_baemin.util.provider.ResourcesProvider
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
@@ -55,7 +57,7 @@ val appModule = module {
     single<MapRepository> { DefaultMapRepository(get(), get())}
     single<UserRepository> { DefaultUserRepository(get(), get(), get())}
     single<RestaurantFoodRepository> { DefaultRestaurantFoodRepository(get(),get(), get())}
-    single<RestaurantReviewRepository> { DefaultRestaurantReviewRepository(get())}
+    single<RestaurantReviewRepository> { DefaultRestaurantReviewRepository(get(), get())}
     single<OrderRepository> { DefaultOrderRepository(get(), get()) }
 
     single { Dispatchers.IO }
@@ -82,4 +84,6 @@ val appModule = module {
     single { MenuChangeEventBus() }
 
     single { Firebase.firestore }
+    single { FirebaseAuth.getInstance() }
+    single { FirebaseStorage.getInstance() }
 }

@@ -1,7 +1,7 @@
 package com.example.cleanarchitecture_baemin.data.network
 
-import aop.fastcampus.part6.chapter01.data.response.address.AddressInfoResponse
-import aop.fastcampus.part6.chapter01.data.response.search.SearchResponse
+import com.example.cleanarchitecture_baemin.data.response.address.AddressInfoResponse
+import com.example.cleanarchitecture_baemin.data.response.search.SearchResponse
 import com.example.cleanarchitecture_baemin.data.url.Key
 import com.example.cleanarchitecture_baemin.data.url.Url
 import retrofit2.Response

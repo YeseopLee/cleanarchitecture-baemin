@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import com.example.cleanarchitecture_baemin.di.appTestModule
 import com.example.cleanarchitecture_baemin.livedata.LiveDataTestObserver
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -20,7 +21,8 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 
-class ViewModelTest: KoinTest {
+@ExperimentalCoroutinesApi
+open class ViewModelTest: KoinTest {
 
     @get:Rule
     val mockitoRule: MockitoRule = MockitoJUnit.rule()
